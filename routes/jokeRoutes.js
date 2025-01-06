@@ -104,10 +104,10 @@ router.get('/blagues', jokeController.getAllJokes);
 // Consulter une joke avec son Id
 router.get('/blagues/:id', jokeController.getOneJoke);
 
-// Swagger pour "/blagues/random"
+// Swagger pour "/random"
 /**
  * @swagger
- * /api/v1/blagues/random:
+ * /api/v1/random:
  *   get:
  *     summary: Consulte une blague aléatoire
  *     responses:
@@ -125,6 +125,6 @@ router.get('/blagues/:id', jokeController.getOneJoke);
  */
 
 // Consulter une blague aléatoire
-router.get('/blagues/random', jokeController.getOneRandomJoke);
+router.get('/random', jokeController.getOneRandomJoke);
 
 module.exports = router;
