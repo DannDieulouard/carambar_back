@@ -6,7 +6,7 @@ const db = require('./models');
 const { swaggerUi, specs } = require('./config/swagger');
 
 app.use(cors({
-  origin: 'https://DannDieulouard.github.io'
+  origin: 'http://localhost:5173'
 }));
 
 app.use(express.json());
