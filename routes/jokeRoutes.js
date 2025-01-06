@@ -16,25 +16,25 @@ const jokeController = require('../controllers/jokeController');
  *       properties:
  *         id:
  *           type: integer
- *           description: identificateur de la joke auto-incrementé
+ *           description: identificateur de la blague auto-incrementé
  *         question:
  *           type: string
- *           description: Le nom de la joke
+ *           description: Le nom de la blague
  *         answer:
  *           type: string
- *           description: La chute de la joke
+ *           description: La chute de la blague
  *       example:
  *         id: 1
  *         question: "Quelle est la femelle du hamster ?"
  *         answer: "L’Amsterdam"
  */
 
-// Swagger pour "addJoke"
+// Swagger pour "ajouterBlague"
 /**
  * @swagger
- * /api/v1/addjoke:
+ * /api/v1/addJoke:
  *   post:
- *     summary: Ajoute une joke
+ *     summary: Ajoute une blague
  *     requestBody:
  *       required: true
  *       content:
@@ -62,10 +62,10 @@ router.post('/addJoke', jokeController.createJoke);
  * @swagger
  * /api/v1/blagues:
  *   get:
- *     summary: Consulte toutes les jokes
+ *     summary: Consulte toutes les blagues
  *     responses:
  *       200:
- *         description: Succès ! La liste de jokes à été retourné !
+ *         description: Succès ! La liste de blague a été retournée !
  *         content:
  *           application/json:
  *             schema:
@@ -82,17 +82,17 @@ router.get('/blagues', jokeController.getAllJokes);
  * @swagger
  * /api/v1/blagues/:id:
  *   get:
- *     summary: Consulte une joke
+ *     summary: Consulte une blague
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: identificateur de la joke auto-incrementé
+ *         description: identificateur de la blague auto-incrementé
  *     responses:
  *       200:
- *         description: Succès ! La joke à été retourné !
+ *         description: Succès ! La blague a été retournée !
  *         content:
  *           application/json:
  *             schema:
@@ -109,10 +109,10 @@ router.get('/blagues/:id', jokeController.getOneJoke);
  * @swagger
  * /api/v1/blagues/random:
  *   get:
- *     summary: Consulte une joke aléatoire
+ *     summary: Consulte une blague aléatoire
  *     responses:
  *       200:
- *         description: Succès ! La joke aléatoire à été retourné !
+ *         description: Succès ! La blague aléatoire a été retournée !
  *         content:
  *           application/json:
  *              schema:
@@ -124,7 +124,7 @@ router.get('/blagues/:id', jokeController.getOneJoke);
  *                    type: string
  */
 
-// Consulter une joke aléatoire
+// Consulter une blague aléatoire
 router.get('/blagues/random', jokeController.getOneRandomJoke);
 
 module.exports = router;
