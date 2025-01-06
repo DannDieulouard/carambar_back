@@ -10,10 +10,13 @@
   "author": "Dann Dieulouard",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "sequelize": "^6.37.5",
     "sequelize-cli": "^6.6.2",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

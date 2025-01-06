@@ -1,46 +1,43 @@
-const { Joke } = require("../db/sequelizeSetup")
+const { Joke } = require("../models");
+const { sequelize } = require("../models");
 
-const findAllJokes = async (req, res) => {
-    try {
-        const result = await Joke.findAll()
-        res.json({ message: `Il y a ${result.length} blagues.`, data: result })
-    } catch (error) {
-        errorHandler(error, res)
-    }
-}
+// Ajouter une blague en BDD via Postman
+exports.createJoke = async (req, res) => {
+  try {
+    const joke = await Joke.create(req.body);
+    res.status(201).json(joke);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-const findJokeByPk = async (req, res) => {
-    try {
-        const result = await Joke.findByPk(req.params.id);
-        if (!result) {
-            return res.status(404).json({ message: `La blague n'existe pas.` })
-        }
-        
-        res.json({ message: 'Blague trouvée', data: result })
-    } catch (error) {
-        errorHandler(error, res)
-    }
-}
+// Consulter toutes les blagues
+exports.getAllJokes = async (req, res) => {
+  try {
+    const allJokes = await Joke.findAll();
+    res.json(allJokes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 
-const createJoke = async (req, res) => {
-    try {
-        const { question, answer } = req.body; // Assuming JSON body input
-        const newJoke = await Joke.create({ question, answer });
-        res.json(newJoke);
-      } catch (error) {
-        res.status(500).json({ error: 'Error creating joke', details: error });
-      }
-}
+// Consulter une blague avec son Id
+exports.getOneJoke = async (req, res) => {
+  try {
+    const joke = await Joke.findByPk(req.params.id);
+    res.json(joke);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-const randomJoke = async (req, res) => {
-    try {
-        req.body.UserId = req.user.id
-        const newJoke = await Joke.create(req.body)
-        res.status(201).json({ message: `Blague aléatoire tirée au sort.`, data: newJoke })
-    } catch (error) {
-        errorHandler(error, res)
-    }
-}
-
-module.exports = { findAllJokes, findJokeByPk, createJoke, randomJoke }
+// Consulter une blague aléatoire
+exports.getOneRandomJoke = async (req, res) => {
+  try {
+    const randomJoke = await Joke.findOne({ order: [[ sequelize.literal('RANDOM()') ]] });
+    res.json(randomJoke);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
